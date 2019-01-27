@@ -1,0 +1,93 @@
+<html>
+    <script src="node_modules/jquery/jquery.js"></script>
+    <script src="node_modules/popper.js/dist/popper.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+    <body>
+        <div id='app'>
+            <div class="row">
+                 <div class="col-sm">
+                    <p>Inserisci i dati del todo</p>
+                     <input v-model="name" placeholder="name"> 
+                     <br>
+                    <input v-model="description" placeholder="description"> 
+                    <br>
+                    <input v-model="completed" placeholder="completed"> 
+                    <br>
+                     <input v-model="assignedTo" placeholder="assignedTo"> 
+                    <br><br>
+                    <button v-on:click="post">Invia dati post</button><br>
+                </div>
+                <div class="col-sm">
+                    <p>Inserisci id per eliminare todo</p>
+                    <input v-model="toDoId" placeholder="Id"><br>
+                    <button v-on:click="deleteToDo">Elimina todo</button><br> <br>
+                </div>
+                <div class="col-sm">
+                        <p>Inserisci id per modificare status</p>
+                        <input v-model="statusId" placeholder="Id"> <br>
+                        <button v-on:click="putStatusById" >Modifica Status</button><br><br>
+                </div>
+                <div class="col-sm">
+                    <input v-model="user" placeholder="User"><br>
+                    <button v-on:click="postUsers" >Carica utente</button>
+                    <button v-on:click="loadUsers" >Mostra utenti</button><br><br>
+                      
+                            <h1>Utenti</h1>
+                                <ul class="list-group">
+                                    <p> 
+                                         <li  v-for='user in users' class="list-group-item">User: {{user}}</li>   
+                                    </p>
+                                </ul>
+                </div>
+            </div>
+        
+            <hr>
+            
+            <div class="row">
+                    <div class="col-sm">
+                            <p>Operazioni sui todo</p>
+                            <button v-on:click="loadToDos">Visualizza todo</button><br><br>
+                        <h1>Tutti i Todo</h1>
+                             <ul class="list-group">
+                                <p> 
+                                    <li  v-for='toDo in toDos' class="list-group-item">id: {{ toDo.id }}<br>name: {{ toDo.name }}<br>description: {{ toDo.description }}<br>completed: {{ toDo.completed }}<br>assignedTo: {{ toDo.assignedTo }} </li>  
+                                 </p>
+                            </ul>
+                     </div>
+                     <div class="col-sm">
+                            <p>Inserisci User da cercare fra i todo:</p>
+                            <input v-model="toDoUser" placeholder="User"><br>
+                            <button v-on:click="getToDoByUser" >Cerca todo</button><br>
+                                <h1>Tutti i Todo filtrati per user</h1>
+                                    <ul class="list-group">
+                                        <p> 
+                                            <li  v-for='toDo in toDoUsers' class="list-group-item">id: {{ toDo.id }}<br>name: {{ toDo.name }}<br>description: {{ toDo.description }}<br>completed: {{ toDo.completed }}<br>assignedTo: {{ toDo.assignedTo }} </li>  
+                                        </p>
+                                    </ul>
+                        </div>
+                         <div class="col-sm">
+                                <p>Inserisci status da cercare fra i todo:</p>
+                                <input v-model="statusUser" placeholder="Status"> <br>
+                                <button v-on:click="getStatus" >cerca Status</button> <br>
+                                <h1>Tutti i Todo filtrati per status</h1>
+                                    <ul class="list-group">
+                                        <p> 
+                                            <li  v-for='toDo in statusUsers' class="list-group-item">id: {{ toDo.id }}<br>name: {{ toDo.name }}<br>description: {{ toDo.description }}<br>completed: {{ toDo.completed }}<br>assignedTo: {{ toDo.assignedTo }} </li> 
+                                         </p>
+                                    </ul>
+                        </div>
+    
+            </div>
+            
+            
+                   
+            
+                    
+            
+        </div>
+    </body>
+    <script src="./app.js"></script>
+</html>
